@@ -1,6 +1,6 @@
 {
   "name": "@hexlet/code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "[![Actions Status](https://github.com/arsael/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/arsael/frontend-project-44/actions)",
   "main": "index.js",
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/arsael/frontend-project-44#readme",
   "bin": {
-    "brain-games": "bin/brain-games.js"
+    "brain-games": "bin/brain-games.js",
+    "brain-even": "bin/brain-even.js"
   },
   "dependencies": {
     "readline-sync": "^1.4.10"
