@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { gameAnswer, rndNum } from './common-logic.js';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
@@ -11,8 +12,6 @@ const maxLength = 10;
 const minStep = 1;
 // Setting maximum possible step for a progression
 const maxStep = 5;
-// Generate rnd num in range from minNum to maxNum inclusive
-const rndNum = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 // Generate rnd array in range from minNum to maxNum inclusive
 const rndArray = (start, step, length) => {
   const progression = [];
@@ -41,11 +40,5 @@ export default (name) => {
   progForGame[progPos] = '..';
   const userInput = getUserInput(progForGame);
   const isCorrect = checkUserInput(userInput, rightAnswer);
-  if (isCorrect) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userInput}' is wrong answer ;(. Correct answer was '${rightAnswer}'. \nLet's try again, ${name}!`);
-    return false;
-  }
-  return true;
+  return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

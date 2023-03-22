@@ -1,4 +1,7 @@
 import readlineSync from 'readline-sync';
+import { gameAnswer, rndNum } from './common-logic.js';
+// Setting minimum possible number for the game
+const minNum = 0;
 // Setting maximum possible number for the game
 const maxNum = 100;
 // Checking if number is even
@@ -8,16 +11,10 @@ const yesOrNo = (number) => readlineSync.question(`Answer "yes" if the number is
 // Checking if user input is right
 const checkUserInput = (input, isEven) => input === isEven;
 // The game
-export default (userName) => {
-  const rndNum = Math.floor(Math.random() * maxNum);
-  const numIsEven = checkIsEven(rndNum);
-  const userInput = yesOrNo(rndNum);
-  const isCorrect = checkUserInput(userInput, numIsEven);
-  if (isCorrect) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userInput}' is wrong answer ;(. Correct answer was '${numIsEven}'. \nLet's try again, ${userName}!`);
-    return false;
-  }
-  return true;
+export default (name) => {
+  const rndNum1 = rndNum(minNum, maxNum);
+  const rightAnswer = checkIsEven(rndNum1);
+  const userInput = yesOrNo(rndNum1);
+  const isCorrect = checkUserInput(userInput, rightAnswer);
+  return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

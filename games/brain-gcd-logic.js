@@ -1,10 +1,9 @@
 import readlineSync from 'readline-sync';
+import { gameAnswer, rndNum } from './common-logic.js';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
 const maxNum = 100;
-// Generate rnd num in range from minNum to maxNum inclusive
-const rndNum = () => Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
 // Getting the right answer
 const getRightAnswer = (num1, num2) => {
   let answer = 0;
@@ -21,16 +20,10 @@ const getUserInput = (num1, num2) => readlineSync.question(`Find the greatest co
 const checkUserInput = (input, answer) => parseInt(input, 10) === parseInt(answer, 10);
 // The game
 export default (name) => {
-  const rndNum1 = rndNum();
-  const rndNum2 = rndNum();
+  const rndNum1 = rndNum(minNum, maxNum);
+  const rndNum2 = rndNum(minNum, maxNum);
   const rightAnswer = getRightAnswer(rndNum1, rndNum2);
   const userInput = getUserInput(rndNum1, rndNum2);
   const isCorrect = checkUserInput(userInput, rightAnswer);
-  if (isCorrect) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userInput}' is wrong answer ;(. Correct answer was '${rightAnswer}'. \nLet's try again, ${name}!`);
-    return false;
-  }
-  return true;
+  return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };
