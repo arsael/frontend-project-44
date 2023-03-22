@@ -13,3 +13,6 @@ Brain gcd game:
 
 Brain progression game:  
 [![asciicast](https://asciinema.org/a/8PxuYTX6CGjWQyyjPtXCfi163.svg)](https://asciinema.org/a/8PxuYTX6CGjWQyyjPtXCfi163)
+
+Brain prime game:
+[![asciicast](https://asciinema.org/a/ZDHxhmm5vjkxwc0ac9vGdEs3u.svg)](https://asciinema.org/a/ZDHxhmm5vjkxwc0ac9vGdEs3u)
