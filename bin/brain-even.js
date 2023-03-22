@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import {getUserName} from "../src/cli.js";
-import {evenGame} from "../src/brain-even-logic.js";
-export const userName = getUserName();
-evenGame();
+import {playGame} from "../src/index.js";
+import {evenGame} from "../games/brain-even-logic.js";
+playGame(evenGame);

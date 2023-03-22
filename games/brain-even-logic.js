@@ -1,7 +1,5 @@
 import readlineSync from 'readline-sync';
-import {userName} from "../bin/brain-even.js";
 const maxNum = 100;
-const roundCount = 3;
 
 //Checking if number is even
 const checkIsEven = (number) => number % 2 === 0 ? 'yes' : 'no';
@@ -13,8 +11,7 @@ const yesOrNo = (number) => readlineSync.question(`Answer "yes" if the number is
 const checkUserInput = (input, isEven) => input === isEven;
 
 //The game
-export const evenGame = () => {
-    for (let i = 0; i < roundCount; i++) {
+export const evenGame = (userName) => {
         const rndNum = Math.floor(Math.random() * maxNum);
         const numIsEven = checkIsEven(rndNum);
         const userInput = yesOrNo(rndNum);
@@ -25,8 +22,6 @@ export const evenGame = () => {
             console.log("'" + userInput + "' is wrong answer ;(. Correct answer was '" + numIsEven + "'. \nLet's try again, " + userName + "!");
             return false;
         }
-    }
-    console.log('Congratulations, ' + userName + '!');
 };
 
 
