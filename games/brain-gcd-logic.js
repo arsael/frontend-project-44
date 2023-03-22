@@ -2,9 +2,9 @@ import readlineSync from 'readline-sync';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
-const maxNum = 99;
-// Generate rnd num in range from 0 to max
-const rndNum = () => Math.floor(Math.random() * maxNum + minNum);
+const maxNum = 100;
+// Generate rnd num in range from minNum to maxNum inclusive
+const rndNum = () => Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
 // Getting the right answer
 const getRightAnswer = (num1, num2) => {
   let answer = 0;
