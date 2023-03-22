@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import { gameAnswer, rndNum } from './common-logic.js';
+import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
+// Setting game name
+const game = 'brain-progression';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
@@ -24,8 +25,6 @@ const rndArray = (start, step, length) => {
 };
 // Getting the right answer
 const getRightAnswer = (num, array) => array[num];
-// Getting user input
-const getUserInput = (array) => readlineSync.question(`What number is missing in the progression? \nQuestion: ${array.join(' ')} \nYour answer: `);
 // Checking if user input is right
 const checkUserInput = (input, answer) => parseInt(input, 10) === parseInt(answer, 10);
 // The game
@@ -38,7 +37,7 @@ export default (name) => {
   const rightAnswer = getRightAnswer(progPos, progItSelf);
   const progForGame = [...progItSelf];
   progForGame[progPos] = '..';
-  const userInput = getUserInput(progForGame);
+  const userInput = getUserInput(game, undefined, undefined, undefined, progForGame);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

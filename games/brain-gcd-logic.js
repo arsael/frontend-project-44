@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import { gameAnswer, rndNum } from './common-logic.js';
+import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
+// Setting game name
+const game = 'brain-gcd';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
@@ -14,8 +15,6 @@ const getRightAnswer = (num1, num2) => {
   }
   return answer;
 };
-// Getting user input
-const getUserInput = (num1, num2) => readlineSync.question(`Find the greatest common divisor of given numbers. \nQuestion: ${num1} ${num2} \nYour answer: `);
 // Checking if user input is right
 const checkUserInput = (input, answer) => parseInt(input, 10) === parseInt(answer, 10);
 // The game
@@ -23,7 +22,7 @@ export default (name) => {
   const rndNum1 = rndNum(minNum, maxNum);
   const rndNum2 = rndNum(minNum, maxNum);
   const rightAnswer = getRightAnswer(rndNum1, rndNum2);
-  const userInput = getUserInput(rndNum1, rndNum2);
+  const userInput = getUserInput(game, rndNum1, rndNum2, undefined, undefined);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

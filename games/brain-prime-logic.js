@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import { gameAnswer, rndNum } from './common-logic.js';
+import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
+// Setting game name
+const game = 'brain-prime';
 // Setting minimum possible number for the game
 const minNum = 1;
 // Setting maximum possible number for the game minus minimum number
@@ -20,15 +21,13 @@ const getRightAnswer = (num) => {
   }
   return answer;
 };
-// Getting user input
-const getUserInput = (num) => readlineSync.question(`Answer "yes" if given number is prime. Otherwise answer "no". \nQuestion: ${num} \nYour answer: `);
 // Checking if user input is right
 const checkUserInput = (input, answer) => input.toString() === answer.toString();
 // The game
 export default (name) => {
   const rndNum1 = rndNum(minNum, maxNum);
   const rightAnswer = getRightAnswer(rndNum1);
-  const userInput = getUserInput(rndNum1);
+  const userInput = getUserInput(game, rndNum1, undefined, undefined, undefined);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

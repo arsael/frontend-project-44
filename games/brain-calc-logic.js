@@ -1,5 +1,6 @@
-import readlineSync from 'readline-sync';
-import { gameAnswer, rndNum } from './common-logic.js';
+import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
+// Setting game name
+const game = 'brain-calc';
 // Setting minimum possible number for the game
 const minNum = 0;
 // Setting maximum possible number for the game
@@ -19,8 +20,6 @@ const getRightAnswer = (num1, num2, actionString, actionsArray) => {
   // А если бы можно было исользовать eval(`${num1} ${action} ${num2}`);
   // получилось бы универсально :(
 };
-// Getting user input
-const getUserInput = (num1, num2, action) => readlineSync.question(`What is the result of the expression? \nQuestion: ${num1} ${action} ${num2} \nYour answer: `);
 // Checking if user input is right
 const checkUserInput = (input, answer) => parseInt(input, 10) === parseInt(answer, 10);
 // The game
@@ -29,7 +28,7 @@ export default (name) => {
   const rndNum2 = rndNum(minNum, maxNum);
   const action = rndFromArray(actions);
   const rightAnswer = getRightAnswer(rndNum1, rndNum2, action, actions);
-  const userInput = getUserInput(rndNum1, rndNum2, action);
+  const userInput = getUserInput(game, rndNum1, rndNum2, action, undefined);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };
