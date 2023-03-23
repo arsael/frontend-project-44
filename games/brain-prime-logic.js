@@ -1,11 +1,15 @@
-import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
-// Setting game name
-const game = 'brain-prime';
-// Setting minimum possible number for the game
-const minNum = 1;
-// Setting maximum possible number for the game minus minimum number
-const maxNum = 100;
-// Getting the right answer
+import { gameAnswer, getUserInput, randomContent } from './common-logic.js';
+// Game settings
+const gameSettings = [
+  1, // min number
+  100, // max number
+  0, // min progression step — 0 if no progression
+  0, // max progression step — 0 if no progression
+  0, // min progression length — 0 if no progression
+  0, // max progression length — 0 if no progression
+  [], // array of possible actions — [] if no actions
+  'brain-prime', // game name
+];
 const getRightAnswer = (num) => {
   let k = 0;
   let answer;
@@ -25,9 +29,9 @@ const getRightAnswer = (num) => {
 const checkUserInput = (input, answer) => input.toString() === answer.toString();
 // The game
 export default (name) => {
-  const rndNum1 = rndNum(minNum, maxNum);
-  const rightAnswer = getRightAnswer(rndNum1);
-  const userInput = getUserInput(game, rndNum1, undefined, undefined, undefined);
+  const content = randomContent(gameSettings);
+  const rightAnswer = getRightAnswer(content[0]);
+  const userInput = getUserInput(gameSettings[7], content[0], undefined, undefined, undefined);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };

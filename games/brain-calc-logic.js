@@ -1,14 +1,15 @@
-import { gameAnswer, getUserInput, rndNum } from './common-logic.js';
-// Setting game name
-const game = 'brain-calc';
-// Setting minimum possible number for the game
-const minNum = 0;
-// Setting maximum possible number for the game
-const maxNum = 100;
-// Setting array of possible math operators for the game
-const actions = ['-', '+', '*'];
-// Get random value from an array
-const rndFromArray = (array) => array[Math.floor(Math.random() * (array.length - 1))];
+import { gameAnswer, getUserInput, randomContent } from './common-logic.js';
+// Game settings
+const gameSettings = [
+  0, // min number
+  100, // max number
+  0, // min progression step — 0 if no progression
+  0, // max progression step — 0 if no progression
+  0, // min progression length — 0 if no progression
+  0, // max progression length — 0 if no progression
+  ['-', '+', '*'], // array of possible actions — [] if no actions
+  'brain-calc', // game name
+];
 // Getting the right answer
 const getRightAnswer = (num1, num2, actionString, actionsArray) => {
   switch (actionString) {
@@ -17,18 +18,14 @@ const getRightAnswer = (num1, num2, actionString, actionsArray) => {
     case actionsArray[2]: return num1 * num2;
     default: return false;
   }
-  // А если бы можно было исользовать eval(`${num1} ${action} ${num2}`);
-  // получилось бы универсально :(
 };
 // Checking if user input is right
 const checkUserInput = (input, answer) => parseInt(input, 10) === parseInt(answer, 10);
 // The game
 export default (name) => {
-  const rndNum1 = rndNum(minNum, maxNum);
-  const rndNum2 = rndNum(minNum, maxNum);
-  const action = rndFromArray(actions);
-  const rightAnswer = getRightAnswer(rndNum1, rndNum2, action, actions);
-  const userInput = getUserInput(game, rndNum1, rndNum2, action, undefined);
+  const content = randomContent(gameSettings);
+  const rightAnswer = getRightAnswer(content[0], content[1], content[7], gameSettings[6]);
+  const userInput = getUserInput(gameSettings[7], content[0], content[1], content[7], undefined);
   const isCorrect = checkUserInput(userInput, rightAnswer);
   return gameAnswer(isCorrect, userInput, rightAnswer, name);
 };
